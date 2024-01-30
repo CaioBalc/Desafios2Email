@@ -12,7 +12,7 @@ require __DIR__ ."/vendor/autoload.php";
     
     $output = true;
     if($output){
-        $generate = (new index())->find()->fetch(all: true);
+        #$generate = (new index())->find()->fetch(all: true);
         $csv = Writer::createFromString(content: "");
     }
 

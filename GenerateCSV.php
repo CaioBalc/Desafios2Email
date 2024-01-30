@@ -2,7 +2,8 @@
 
 use League\Csv\Reader;
 use League\Csv\Writer;
-use User;
+use GenerateCSV;
+use League\Csv\Statement;
 
 require __DIR__ ."/vendor/autoload.php";
 
@@ -15,7 +16,7 @@ class GenerateFiles {
     public function __construct() {
         $this->generateProductsCsv();
         $this->generateOrdersCsv();
-        $this->generateSalesCsv();
+        #$this->generateSalesCsv();
     }
 
     private function generateProductsCsv() {
@@ -96,23 +97,44 @@ class GenerateFiles {
         fclose($file);
     }
 
+    /*
     private function generateSalesCsv(){
         $file = fopen(self::$sales_csv_name, 'w');
         fputcsv($file, ['product_id', 'unit_price', 'date_last_sale', 'total_quantity', 'total_price']);
         
-        $output = true;
+        $output = false;
         if($output){
-            $users = (new User())->find()->fetch(all:true);
+           # $file = (new GenerateCSV())->find()->fetch(all:true);
+           $csv = Writer::createFromString(content: "");
+           $csv->insertOne([
+            'product_id',
+            'unit_price',
+            'date_last_sale',
+            'total_quantity',
+            'total_price'
+           ]);
+
+           foreach($data as $file){
+                $csv->insertOne([
+                'product_id',
+                'unit_price',
+                'date_last_sale',
+                'total_quantity',
+                'total_price'
+               ]);
+           }
         }
     
-        $read = false;
+        $read = true;
         if($read){
-            $stream = fopen(filename: __DIR__ .'GenerateCSV.php', mode:'r');
-            $csv = Reader::createFromStream($stream);
-           $csv->setDelimiter(delimiter: ',');
+            $stream = fopen(filename: __DIR__ .'orders.csv', mode:'r');
+            $csv = Reader::createFromPath($stream, 'r');
+            $csv->setDelimiter(delimiter: ',');
+            $csv->setHeaderOffset(offset: 0);
         }
     
     }
+    */
 
 }
 
