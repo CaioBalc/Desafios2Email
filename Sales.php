@@ -13,17 +13,17 @@ class orders{
         $this->quantity = $quantity;
     }
     
-    public function getOrder_id(): string{
+    public function getOrderId(): string{
         return $this->order_id;
     }
-    public function setOrder_id(string $order_id){
+    public function setOrderId(string $order_id){
         $this->order_id = $order_id;
     }
 
-    public function getProduct_id(): string{
+    public function getProductId(): string{
         return $this->product_id;
     }
-    public function setProduct_id(string $product_id){
+    public function setProductId(string $product_id){
         $this->product_id = $product_id;
     }
 
